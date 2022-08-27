@@ -11,7 +11,7 @@
                         </div>
 
                             <div class="col-4 text-right">
-                                <a href="{{ route('material.create') }}" class="btn btn-sm btn-primary">Adicionar Novo</a>
+                                <a href="" class="btn btn-sm btn-primary">Adicionar Novo</a>
                             </div>
                         
                     </div>
@@ -91,8 +91,15 @@
                                  <a class="btn btn-info btn-block btn-sm" id="btnData" href="">Dados Cadastrais</a>
                                 
                                 
-                                 <a class="btn btn-info btn-block btn-sm" id="btnDependent" href="">Editar</a>
+                                 <a class="btn btn-info btn-block btn-sm" id="btnDependent" href="">Dependentes</a>
                                 
+                                <a href="" class="btn btn-info btn-block btn-sm">Imprimir Boletos</a>
+                                
+                                
+                                <a href="" class="btn btn-info btn-block btn-sm">Remessa p/
+                                        Banco</a>
+                                
+                                <a href="" class="btn btn-info btn-block btn-sm">Retorno do Banco</a>
                                 
                             </div>
                         </div>

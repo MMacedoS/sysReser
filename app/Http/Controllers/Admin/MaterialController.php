@@ -9,11 +9,13 @@ class MaterialController extends Controller
 {
     public function index(Request $request)
     {
-        return view('material.index');
+        $data = [];
+        return view('material.index', compact('data'));
     }
     public function create(Request $request)
     {
-        
+        $data = [];
+        return view('material.create', compact('data'));        
     }
     public function show(Request $request)
     {

@@ -7,11 +7,11 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-8">
-                            <h4 class="card-title">Materiais</h4>
+                            <h4 class="card-title">Clientes</h4>
                         </div>
 
                             <div class="col-4 text-right">
-                                <a href="{{ route('material.create') }}" class="btn btn-sm btn-primary">Adicionar Novo</a>
+                                <a href="" class="btn btn-sm btn-primary">Adicionar Novo</a>
                             </div>
                         
                     </div>
@@ -20,11 +20,16 @@
                     @include('alerts.success')
                     
                     {!! Form::open()->fill(request()->all())->get() !!} <div class="row">
-                        <div class="col-md-5">
-                            {!! Form::text('material', 'Nome do material')->required(false)->attrs(['class' => 'from-control']) !!}
+                        <div class="col-md-4">
+                            {!! Form::text('material', 'Nome do Cliente/CPF/CNPJ')->required(false)->attrs(['class' => 'from-control']) !!}
                         </div>
-                        
-                        <div class="col-md-7 text-right mt-4">
+                        <div class="col-md-4">
+                            {!! Form::text('endereco', 'Endereço')->required(false)->attrs(['class' => 'from-control']) !!}
+                        </div>
+                        <div class="col-md-4">
+                            {!! Form::text('material', 'Telefone')->required(false)->attrs(['class' => 'from-control']) !!}
+                        </div>
+                        <div class="col-md-12 text-right mt-4">
                             <button class="        btn btn-sm  btn-primary" style="font-size: 9px;" type="submit">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" fill="currentColor"
                                     class="bi bi-funnel-fill" viewBox="0 0 16 16">
@@ -48,10 +53,11 @@
                                     <thead class=" text-primary">
                                         <tr id="">
                                         <th scope="col">#</th>
-                                        <th scope="col">Material</th>
+                                        <th scope="col">Nome</th>
+                                        <th scope="col">CPF/CNPJ</th>
                                         <th scope="col">Tipo</th>
-                                        <th scope="col">Caracteristica</th>
-                                        <th scope="col">Valor</th>                                        
+                                        <th scope="col">Telefone</th>
+                                        <th scope="col">Endereço</th>                                        
                                         <th scope="col">Status</th>
                                         </tr>
                                     </thead>

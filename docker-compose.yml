@@ -1,7 +1,7 @@
 version: '3'
 services:
     web:
-        container_name: "categ"
+        container_name: "reser"
         image: ambientum/php:7.4-nginx
         ports:
             - "8080:8080"
@@ -13,7 +13,7 @@ services:
             - 'database'
 
     database:
-        container_name: "categ-database"
+        container_name: "reser-database"
         platform: linux/x86_64
         image: mysql:8
         command: --default-authentication-plugin=mysql_native_password

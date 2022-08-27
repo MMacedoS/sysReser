@@ -41,8 +41,8 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
 	Route::resource('material', 'App\Http\Controllers\Admin\MaterialController', ['except' => ['show']]);
 
-
-
+	Route::resource('reserva', 'App\Http\Controllers\Admin\ReservaController', ['except' => ['show']]);
+	Route::resource('Cliente', 'App\Http\Controllers\Admin\ClienteController', ['except' => ['show']]);
 
 });
 
