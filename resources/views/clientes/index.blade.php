@@ -11,7 +11,7 @@
                         </div>
 
                             <div class="col-4 text-right">
-                                <a href="{{ route('clientes.create') }}" class="btn btn-sm btn-primary">Adicionar Novo</a>
+                                <a href="{{ route('cliente.create') }}" class="btn btn-sm btn-primary">Adicionar Novo</a>
                             </div>
 
                     </div>
@@ -85,7 +85,7 @@
                                 <p class="text-center mb-0"><b>Ações<b></p>
                                 <hr style="border-top: 2px solid #8c8b8b;" class="mt-2">
 
-                                 <a class="btn btn-danger btn-block btn-sm" id="btnDeletar" href="">Deletar</a>
+                                 <!-- <a class="btn btn-danger btn-block btn-sm" id="btnDeletar" href="">Deletar</a> -->
 
 
                                  <a class="btn btn-info btn-block btn-sm" id="btnData" href="">Dados Cadastrais</a>

@@ -76,6 +76,25 @@
                         <div class="card-deck">
                             <div class="card m-2 shadow-sm">
                                 <div class="card-body">
+                                    <p><strong>Unidade : </strong></p>
+                                    <p class="card-text">
+                                    {{ $item->unidade }}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="card m-2 shadow-sm">
+                                <div class="card-body">
+                                    <p><strong>Quantidade: </strong></p>
+                                    <p class="card-text">
+                                        {{ $item->qtdo }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-deck">
+                            <div class="card m-2 shadow-sm">
+                                <div class="card-body">
                                     <p><strong>Dt. Criação: </strong></p>
                                     <p class="card-text">
                                         {{ $item->created_at->format('d/m/Y') }}

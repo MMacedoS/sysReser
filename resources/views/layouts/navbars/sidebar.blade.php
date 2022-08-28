@@ -18,13 +18,13 @@
                 </a>
             </li>
             <li @if ($pageSlug == 'clientes') class="active " @endif>
-                <a href="{{ route('clientes.index') }}">
+                <a href="{{ route('cliente.index') }}">
                 <i class="tim-icons icon-badge"></i>
                     <p>{{ _('Cliente') }}</p>
                 </a>
             </li>
-            <li @if ($pageSlug == 'dashboard') class="active " @endif>
-                <a href="{{ route('home') }}">
+            <li @if ($pageSlug == 'reserva') class="active " @endif>
+                <a href="{{ route('reserva.index') }}">
                 <i class="tim-icons icon-calendar-60"></i>
                     <p>{{ _('Reserva') }}</p>
                 </a>

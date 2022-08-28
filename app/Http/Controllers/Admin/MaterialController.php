@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\DB;
 use App\Models\Material;
+use App\Models\Estoque;
 
 class MaterialController extends Controller
 {
@@ -28,6 +29,8 @@ class MaterialController extends Controller
             'descricao' => 'required',
             'tipo' => 'required',
             'caracteristicas' => 'required',
+            'unidade' => 'required',
+            'qtdo' => 'required'
         ]);
 
         try {
@@ -61,6 +64,8 @@ class MaterialController extends Controller
             'descricao' => 'required',
             'tipo' => 'required',
             'caracteristicas' => 'required',
+            'unidade' => 'required',
+            'qtdo' => 'required'
         ]);
         try {
             $item = Material::findOrFail($id);
@@ -83,6 +88,7 @@ class MaterialController extends Controller
 
         try{
             DB::transaction(function () use($item) {
+                Estoque::where('material_id',$item->id)->delete();
                 $item->delete();
             });
             return redirect()->route('material.index')->withStatus('Material deletado!');

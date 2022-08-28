@@ -24,6 +24,17 @@
         ->required()
         !!}
     </div>
+    <div class="col-md-2">
+    {!!Form::text('qtdo', 'Quantidade')
+        ->attrs(['maxlength' => 7, 'step' => '0.01', 'min' => '0.00', 'value' => '0.00'])->type('number')
+        ->required()
+        !!}
+    </div>
+    <div class="col-md-2">
+    {!! Form::select('unidade', 'Unidade de Medida', ['' => "Selecione ..." ] + \App\Models\Material::getUnits())
+        ->required()
+        !!}
+    </div>
     <div class="col-md-12">
         {!! Form::text('descricao', 'Descrição')->attrs(['class' => 'form-control', 'style' => 'width: 100%;'])->required()!!}
     </div>

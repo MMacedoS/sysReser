@@ -17,6 +17,7 @@ class ClienteController extends Controller
     }
     public function create(Request $request)
     {
+
         return view('clientes.create');
     }
     public function store(Request $request)
@@ -40,10 +41,10 @@ class ClienteController extends Controller
 
                 });
 
-                return redirect()->route('clientes.index')->withStatus('clientes cadastrado!');
+                return redirect()->route('cliente.index')->withStatus('clientes cadastrado!');
         //code...
         } catch (Exception $th) {
-            return redirect()->route('clientes.index')->withError('erro'. $th->getMessage());
+            return redirect()->route('cliente.index')->withError('erro'. $th->getMessage());
         }
     }
     public function show($id)
@@ -76,10 +77,10 @@ class ClienteController extends Controller
                 $item->update($validated);
             });
 
-            return redirect()->route('clientes.index')->withStatus('clientes Atualizado!');
+            return redirect()->route('cliente.index')->withStatus('clientes Atualizado!');
         //code...
         } catch (\Throwable $th) {
-            return redirect()->route('clientes.index')->withError('erro'. $th->getMessage());
+            return redirect()->route('cliente.index')->withError('erro'. $th->getMessage());
         }
 
 
@@ -92,10 +93,10 @@ class ClienteController extends Controller
             DB::transaction(function () use($item) {
                 $item->delete();
             });
-            return redirect()->route('clientes.index')->withStatus('clientes deletado!');
+            return redirect()->route('cliente.index')->withStatus('clientes deletado!');
         }catch(Exception $th)
         {
-            return redirect()->route('clientes.index')->withError('erro'. $th->getMessage());
+            return redirect()->route('cliente.index')->withError('erro'. $th->getMessage());
         }
     }
 }

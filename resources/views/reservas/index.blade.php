@@ -7,7 +7,7 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-8">
-                            <h4 class="card-title">reserva</h4>
+                            <h4 class="card-title">Reserva</h4>
                         </div>
 
                             <div class="col-4 text-right">
@@ -48,9 +48,10 @@
                                     <thead class=" text-primary">
                                         <tr id="">
                                         <th scope="col">#</th>
-                                        <th scope="col">Material</th>
-                                        <th scope="col">Tipo</th>
-                                        <th scope="col">Caracteristica</th>
+                                        <th scope="col">Cliente</th>
+                                        <th scope="col">Dt. Retirada</th>
+                                        <th scope="col">Dt. Retorno</th>
+                                        <th scope="col">Endereço</th>
                                         <th scope="col">Valor</th>
                                         <th scope="col">Status</th>
                                         </tr>
@@ -64,8 +65,9 @@
                                                    #
                                                 </td>
                                                 <td scope="col">{{ $item->nome }}</td>
-                                                <td scope="col">{{ $item->tipo }}</td>
-                                                <td scope="col">{{ $item->caracteristicas }}</td>
+                                                <td scope="col">{{ $item->dataRetirada }}</td>
+                                                <td scope="col">{{ $item->dataRetorno }}</td>
+                                                <td scope="col">{{ $item->endereco }}</td>
                                                 <td scope="col">{{ $item->valor }}</td>
                                                 <td scope="col">{{ $item->status ? 'Ativo': 'Inativo' }}</td>
                                             </tr>
@@ -85,7 +87,7 @@
                                 <p class="text-center mb-0"><b>Ações<b></p>
                                 <hr style="border-top: 2px solid #8c8b8b;" class="mt-2">
 
-                                 <a class="btn btn-danger btn-block btn-sm" id="btnDeletar" href="">Deletar</a>
+                                 <a class="btn btn-danger btn-block btn-sm" id="btnAdd" href="">Adicionar Produtos</a>
 
 
                                  <a class="btn btn-info btn-block btn-sm" id="btnData" href="">Dados Cadastrais</a>
@@ -161,7 +163,7 @@
                 redirectTo("/material/"+id);
             }
         });
-        $('#btnDeletar').click((event)=>{
+        $('#btnAdd').click((event)=>{
             event.preventDefault();
             if((id == '' || status != 1 ))
             {

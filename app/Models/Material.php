@@ -11,6 +11,17 @@ class Material extends Model
     protected $table = 'materiais';
 
     protected $fillable = [
-        'nome','valor','descricao','status','tipo','caracteristicas'
+        'nome','valor','descricao','status','tipo','caracteristicas','qtdo','unidade'
     ];
+
+    public static function getUnits()
+    {
+        return ['m' => 'Metro', 'un' => 'Unidade', 'pç' => 'Peça', 'cx' => 'Caixa'];
+    }
+
+
+    public function estoque()
+    {
+        return $this->hasOne(Estoque::class);
+    }
 }

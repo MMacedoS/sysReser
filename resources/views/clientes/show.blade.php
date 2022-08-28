@@ -11,7 +11,7 @@
                             <h3 class="mb-0">Informações do Cliente</h3>
                         </div>
                         <div class="col-4 text-right">
-                            <a href="{{ route('clientes.index') }}" class="btn btn-sm btn-primary">Voltar</a>
+                            <a href="{{ route('cliente.index') }}" class="btn btn-sm btn-primary">Voltar</a>
                         </div>
                     </div>
                 </div>

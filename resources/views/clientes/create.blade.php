@@ -11,7 +11,7 @@
                         </div>
 
                             <div class="col-4 text-right">
-                                <a href="{{ route('clientes.index') }}" class="btn btn-sm btn-primary">Voltar</a>
+                                <a href="{{ route('cliente.index') }}" class="btn btn-sm btn-primary">Voltar</a>
                             </div>
 
                     </div>
@@ -21,7 +21,7 @@
                     {!!Form::open()
                     ->post()
                     ->id('form-save')
-                    ->route('clientes.store')
+                    ->route('cliente.store')
                     ->multipart()!!}
                     <div class="pl-lg-4">
                         @include('clientes._forms')

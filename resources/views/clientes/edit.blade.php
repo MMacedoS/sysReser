@@ -11,7 +11,7 @@
                         </div>
 
                             <div class="col-4 text-right">
-                                <a href="" class="btn btn-sm btn-primary">Voltar</a>
+                                <a href="{{ route('cliente.index') }}" class="btn btn-sm btn-primary">Voltar</a>
                             </div>
 
                     </div>
@@ -21,7 +21,7 @@
                     {!!Form::open()
                     ->put()
                     ->id('form-save')->fill($item)
-                    ->route('clientes.update', [$item->id])
+                    ->route('cliente.update', [$item->id])
                     ->multipart()!!}
                     <div class="pl-lg-4">
                         @include('clientes._forms')

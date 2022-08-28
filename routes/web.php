@@ -54,7 +54,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/clientes/{id}/visualizar','App\Http\Controllers\Admin\ClienteController@show');
 
 	Route::resource('reserva', 'App\Http\Controllers\Admin\ReservaController', ['except' => ['show','edit','destroy']]);
-	Route::resource('clientes', 'App\Http\Controllers\Admin\ClienteController', ['except' => ['show','edit','destroy']]);
+	Route::resource('cliente', 'App\Http\Controllers\Admin\ClienteController', ['except' => ['show','edit','destroy']]);
 
 });
 
