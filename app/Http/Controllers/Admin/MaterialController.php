@@ -4,37 +4,91 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\DB;
+use App\Models\Material;
 
 class MaterialController extends Controller
 {
     public function index(Request $request)
     {
-        $data = [];
+        $data = Material::all();
         return view('material.index', compact('data'));
     }
     public function create(Request $request)
     {
-        $data = [];
-        return view('material.create', compact('data'));        
+        return view('material.create');
     }
-    public function show(Request $request)
+    public function store(Request $request)
     {
-        
+        $validated = $request->validate([
+            'nome' => 'required|max:255',
+            'valor' => 'required',
+            'status' => 'required',
+            'descricao' => 'required',
+            'tipo' => 'required',
+            'caracteristicas' => 'required',
+        ]);
+
+        try {
+
+                DB::transaction(function () use ($validated) {
+                    Material::create($validated);
+                });
+
+                return redirect()->route('material.index')->withStatus('Material cadastrado!');
+        //code...
+        } catch (\Throwable $th) {
+            return redirect()->route('material.index')->withError('erro'. $th->getMessage());
+        }
     }
-    public function edit(Request $request)
+    public function show($id)
     {
-        
+        $item = Material::findOrFail($id);
+        return view('material.show', compact('item'));
     }
-    public function update(Request $request)
+    public function edit($id)
     {
-        
+        $item = Material::findOrFail($id);
+        return view('material.edit', compact('item'));
     }
-    public function destroy(Request $request)
+    public function update(Request $request,$id)
     {
-        
+        $validated = $request->validate([
+            'nome' => 'required|max:255',
+            'valor' => 'required',
+            'status' => 'required',
+            'descricao' => 'required',
+            'tipo' => 'required',
+            'caracteristicas' => 'required',
+        ]);
+        try {
+            $item = Material::findOrFail($id);
+
+            DB::transaction(function () use ($validated, $item) {
+                $item->update($validated);
+            });
+
+            return redirect()->route('material.index')->withStatus('Material Atualizado!');
+        //code...
+        } catch (\Throwable $th) {
+            return redirect()->route('material.index')->withError('erro'. $th->getMessage());
+        }
+
+
     }
-    public function rules(Request $request)
+    public function destroy($id)
     {
-        
+        $item = Material::findOrFail($id);
+
+        try{
+            DB::transaction(function () use($item) {
+                $item->delete();
+            });
+            return redirect()->route('material.index')->withStatus('Material deletado!');
+        }catch(Exception $th)
+        {
+            return redirect()->route('material.index')->withError('erro'. $th->getMessage());
+        }
     }
 }

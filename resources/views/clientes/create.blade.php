@@ -1,4 +1,4 @@
-@extends('layouts.app', ['page' => 'material', 'pageSlug' => 'material'])
+@extends('layouts.app', ['page' => 'clientes', 'pageSlug' => 'clientes'])
 
 @section('content')
     <div class="row">
@@ -7,11 +7,11 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-8">
-                            <h4 class="card-title">Cadastrar Materiais</h4>
+                            <h4 class="card-title">Cadastrar Clientes</h4>
                         </div>
 
                             <div class="col-4 text-right">
-                                <a href="" class="btn btn-sm btn-primary">Voltar</a>
+                                <a href="{{ route('clientes.index') }}" class="btn btn-sm btn-primary">Voltar</a>
                             </div>
 
                     </div>
@@ -21,10 +21,10 @@
                     {!!Form::open()
                     ->post()
                     ->id('form-save')
-                    ->route('material.store')
+                    ->route('clientes.store')
                     ->multipart()!!}
                     <div class="pl-lg-4">
-                        @include('material._forms')
+                        @include('clientes._forms')
                     </div>
                     {!!Form::close()!!}
                 </div>

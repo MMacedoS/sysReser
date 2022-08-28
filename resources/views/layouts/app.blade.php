@@ -21,6 +21,7 @@
         <link href="{{ asset('white') }}/css/theme.css" rel="stylesheet" />
     </head>
     <body class="white-content {{ $class ?? '' }}">
+    <input type="hidden" id="baseurl" name="baseurl" value="{{ config('app.url') }}" />
         @auth()
             <div class="wrapper">
                     @include('layouts.navbars.sidebar')
@@ -98,7 +99,9 @@
 
         <script src="{{ asset('white') }}/js/white-dashboard.min.js?v=1.0.0"></script>
         <script src="{{ asset('white') }}/js/theme.js"></script>
+        <script src=" {{ asset('js/main.js') }}?version=1014"></script>
 
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js'></script>
         @stack('js')
 
         <script>

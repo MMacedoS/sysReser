@@ -15,7 +15,7 @@ class CreateMateriaisTable extends Migration
     {
         Schema::create('materiais', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('nome');
             $table->double('valor',7,2);
             $table->string('descricao');
             $table->tinyInteger('status');

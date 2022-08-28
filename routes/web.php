@@ -39,10 +39,22 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
-	Route::resource('material', 'App\Http\Controllers\Admin\MaterialController', ['except' => ['show']]);
+	Route::resource('material', 'App\Http\Controllers\Admin\MaterialController', ['except' => ['edit','show']]);
 
-	Route::resource('reserva', 'App\Http\Controllers\Admin\ReservaController', ['except' => ['show']]);
-	Route::resource('Cliente', 'App\Http\Controllers\Admin\ClienteController', ['except' => ['show']]);
+    Route::get('/material/{id}','App\Http\Controllers\Admin\MaterialController@edit');
+
+    Route::get('/material/{id}/deletar','App\Http\Controllers\Admin\MaterialController@destroy');
+    Route::get('/material/{id}/visualizar','App\Http\Controllers\Admin\MaterialController@show');
+
+
+
+    Route::get('/clientes/{id}','App\Http\Controllers\Admin\ClienteController@edit');
+
+    Route::get('/clientes/{id}/deletar','App\Http\Controllers\Admin\ClienteController@destroy');
+    Route::get('/clientes/{id}/visualizar','App\Http\Controllers\Admin\ClienteController@show');
+
+	Route::resource('reserva', 'App\Http\Controllers\Admin\ReservaController', ['except' => ['show','edit','destroy']]);
+	Route::resource('clientes', 'App\Http\Controllers\Admin\ClienteController', ['except' => ['show','edit','destroy']]);
 
 });
 

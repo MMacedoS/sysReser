@@ -11,14 +11,14 @@
                     <p>{{ _('Dashboard') }}</p>
                 </a>
             </li>
-            <li @if ($pageSlug == 'dashboard') class="active " @endif>
+            <li @if ($pageSlug == 'material') class="active " @endif>
                 <a href="{{ route('material.index') }}">
                 <i class="tim-icons icon-app"></i>
                     <p>{{ _('Material') }}</p>
                 </a>
             </li>
-            <li @if ($pageSlug == 'dashboard') class="active " @endif>
-                <a href="{{ route('Cliente.index') }}">
+            <li @if ($pageSlug == 'clientes') class="active " @endif>
+                <a href="{{ route('clientes.index') }}">
                 <i class="tim-icons icon-badge"></i>
                     <p>{{ _('Cliente') }}</p>
                 </a>
@@ -34,15 +34,15 @@
                 <i class="tim-icons icon-coins"></i>
                     <p>{{ _('Financeiro') }}</p>
                 </a>
-            </li>    
+            </li>
             <li @if ($pageSlug == 'dashboard') class="active " @endif>
                 <a href="{{ route('home') }}">
                 <i class="tim-icons icon-single-02"></i>
                     <p>{{ _('Usuarios') }}</p>
                 </a>
-            </li>        
+            </li>
 
-                
+
         </ul>
     </div>
 </div>

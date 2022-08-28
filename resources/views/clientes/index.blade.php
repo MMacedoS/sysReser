@@ -1,4 +1,4 @@
-@extends('layouts.app', ['pageSlug' => 'dashboard'])
+@extends('layouts.app', ['page' => 'clientes', 'pageSlug' => 'clientes'])
 
 @section('content')
     <div class="row">
@@ -11,25 +11,20 @@
                         </div>
 
                             <div class="col-4 text-right">
-                                <a href="" class="btn btn-sm btn-primary">Adicionar Novo</a>
+                                <a href="{{ route('clientes.create') }}" class="btn btn-sm btn-primary">Adicionar Novo</a>
                             </div>
-                        
+
                     </div>
                 </div>
                 <div class="card-body">
                     @include('alerts.success')
-                    
+
                     {!! Form::open()->fill(request()->all())->get() !!} <div class="row">
-                        <div class="col-md-4">
-                            {!! Form::text('material', 'Nome do Cliente/CPF/CNPJ')->required(false)->attrs(['class' => 'from-control']) !!}
+                        <div class="col-md-9">
+                            {!! Form::text('nome', 'Nome do cliente')->required(false)->attrs(['class' => 'from-control']) !!}
                         </div>
-                        <div class="col-md-4">
-                            {!! Form::text('endereco', 'Endereço')->required(false)->attrs(['class' => 'from-control']) !!}
-                        </div>
-                        <div class="col-md-4">
-                            {!! Form::text('material', 'Telefone')->required(false)->attrs(['class' => 'from-control']) !!}
-                        </div>
-                        <div class="col-md-12 text-right mt-4">
+
+                        <div class="col-md-3 text-right mt-4">
                             <button class="        btn btn-sm  btn-primary" style="font-size: 9px;" type="submit">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" fill="currentColor"
                                     class="bi bi-funnel-fill" viewBox="0 0 16 16">
@@ -57,11 +52,10 @@
                                         <th scope="col">CPF/CNPJ</th>
                                         <th scope="col">Tipo</th>
                                         <th scope="col">Telefone</th>
-                                        <th scope="col">Endereço</th>                                        
                                         <th scope="col">Status</th>
                                         </tr>
                                     </thead>
-                                    
+
                                     <tbody>
                                         @forelse ($data as $item)
                                             <tr style="font-size: 11px; background-color: rgb(255, 255, 255);"
@@ -69,11 +63,11 @@
                                                 <td class="text-left">
                                                    #
                                                 </td>
-                                                <td scope="col"></td>
-                                                <td scope="col"></td>
-                                                <td scope="col"></td>
-                                                <td scope="col"></td>
-                                                <td scope="col"></td>
+                                                <td scope="col">{{ $item->nome }}</td>
+                                                <td scope="col">{{ $item->nif }}</td>
+                                                <td scope="col">{{ $item->tipo ? 'Empresa': 'Fisica' }}</td>
+                                                <td scope="col">{{ $item->telefone }}</td>
+                                                <td scope="col">{{ $item->status ? 'Ativo': 'Inativo' }}</td>
                                             </tr>
                                         @empty
                                             <tr>
@@ -90,16 +84,16 @@
                             <div class="painel-body">
                                 <p class="text-center mb-0"><b>Ações<b></p>
                                 <hr style="border-top: 2px solid #8c8b8b;" class="mt-2">
-                                
-                                 <a class="btn btn-info btn-block btn-sm" id="btnBilling" href="">Cobrança</a>
-                                
-                                
+
+                                 <a class="btn btn-danger btn-block btn-sm" id="btnDeletar" href="">Deletar</a>
+
+
                                  <a class="btn btn-info btn-block btn-sm" id="btnData" href="">Dados Cadastrais</a>
-                                
-                                
-                                 <a class="btn btn-info btn-block btn-sm" id="btnDependent" href="">Editar</a>
-                                
-                                
+
+
+                                 <a class="btn btn-primary btn-block btn-sm" id="btnEditar" href="">Editar</a>
+
+
                             </div>
                         </div>
                     </div>
@@ -107,7 +101,7 @@
                 <div class="card-footer py-4">
                     <nav class="d-flex justify-content-between" aria-label="...">
                         <p style="text-align: left">N.Registros: </p>
-                    
+
                     </nav>
                 </div>
             </div>
@@ -150,31 +144,41 @@
             event.preventDefault();
             if(id === '')
             {
-                swal('Atenção', "selecione um beneficiário!",'warning');
+                swal('Atenção', "selecione um Cliente!",'warning');
             }else
             {
-                redirectTo("/helpdesks/"+id+"/customer");
+                redirectTo("/clientes/" + id + '/visualizar');
             }
         });
 
-        $('#btnDependent').click((event)=>{
+        $('#btnEditar').click((event)=>{
             event.preventDefault();
             if(id === '')
             {
-                swal('Atenção', "selecione um beneficiário!",'warning');
+                swal('Atenção', "selecione um Cliente!",'warning');
             }else
             {
-                redirectTo("/customers/"+id+"/dependents");
+                redirectTo("/clientes/"+id);
             }
         });
-        $('#btnBilling').click((event)=>{
+        $('#btnDeletar').click((event)=>{
             event.preventDefault();
             if((id == '' || status != 1 ))
             {
-                swal('Atenção', "selecione um beneficiário ativo!",'warning');
+                swal('Atenção', "selecione um Cliente ativo!",'warning');
             }else
             {
-                redirectTo("/helpdesks/"+id+"/billings");
+                swal({
+                        title: 'Deseja Deletar?',
+                        text: 'Deseja deletar este registro, não poderar recupera-lo, ou seja, será deletado permanentimente!',
+                        icon: 'warning',
+                        buttons: ["Cancel", "Sim!"],
+                    }).then(function(value) {
+                        if (value) {
+                            redirectTo("/clientes/" + id + '/deletar');
+                        }
+                    });
+                //
             }
         });
 
@@ -182,5 +186,10 @@
         {
             window.location.href= getUrl() + url;
         }
+
+
+
+
+
     </script>
 @endpush
