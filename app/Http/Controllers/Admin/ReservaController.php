@@ -17,7 +17,9 @@ class ReservaController extends Controller
     }
     public function create(Request $request)
     {
-        return view('reservas.create');
+        $clientes =  Cliente::all();
+        $produtos =  Material::all();
+        return view('reservas.create', compact('clientes','produtos'));
     }
     public function store(Request $request)
     {

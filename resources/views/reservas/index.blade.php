@@ -11,7 +11,7 @@
                         </div>
 
                             <div class="col-4 text-right">
-                                <a href="{{ route('material.create') }}" class="btn btn-sm btn-primary">Adicionar Novo</a>
+                                <a href="{{ route('reserva.create') }}" class="btn btn-sm btn-primary">Adicionar Novo</a>
                             </div>
 
                     </div>
