@@ -71,19 +71,12 @@
                     </a>
                 </li>
                 <li class="button-container">
-                    <a href="https://www.creative-tim.com/product/white-dashboard-laravel" target="_blank" class="btn btn-primary btn-block btn-round">Download Now</a>
-                    <a href="https://white-dashboard-laravel.creative-tim.com/docs/getting-started/laravel-setup.html" target="_blank" class="btn btn-default btn-block btn-round">
-                    Documentation
-                    </a>
+                    <a href="{{ route('home') }}" class="btn btn-primary btn-block btn-round">Dashboard</a>
+                    <a href="{{ route('cliente.index') }}" class="btn btn-info btn-block btn-round">Cliente</a>
+                    <a href="{{ route('reserva.index') }}" class="btn btn-succes btn-block btn-round">Reserva</a>
+                    <a href="{{ route('material.index') }}" class="btn btn-warning btn-block btn-round">Material</a>
                 </li>
-                <li class="header-title">Thank you for 95 shares!</li>
-                <li class="button-container text-center">
-                    <button id="twitter" class="btn btn-round btn-info"><i class="fab fa-twitter"></i> &middot; 45</button>
-                    <button id="facebook" class="btn btn-round btn-info"><i class="fab fa-facebook-f"></i> &middot; 50</button>
-                    <br>
-                    <br>
-                    <a class="github-button" href="https://github.com/creativetimofficial/white-dashboard-laravel" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star ntkme/github-buttons on GitHub">Star</a>
-                </li>
+
                 </ul>
             </div>
         </div>

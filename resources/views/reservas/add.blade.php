@@ -2,15 +2,19 @@
 
 @section('content')
 
-<div class="row">
-    <div class="col-sm-12">
+<div class="row mt-3">
+    <div class="col-sm-12 ">
         <h4>Adição de materiais na reserva</h4>
     </div>
-    <div class="col-sm-6">
+    <div class="col-sm-6 mt-3">
         <p><b>Cliente:</b>
         {{ $item->cliente->nome }}</p>
     </div>
-    <div class="col-sm-6">
+    <div class="col-sm-3 mt-3">
+        <p><b>Data de Retirada:</b>
+        {{ brDate($item->dataRetirada) }}</p>
+    </div>
+    <div class="col-sm-3 mt-3">
         <p><b>Data de retorno:</b>
         {{ brDate($item->dataRetorno) }}</p>
     </div>
@@ -23,77 +27,60 @@
                 <div id="home" class="tab-pane fade show active">
                     <div class="painel-body">
                         <div class="row">
+                            <hr class="bg-primary w-100">
+                        </div>
+
+                        {!!Form::open()
+                        ->post()
+                        ->id('form-save')!!}
+                        <div class="row">
+                                <div class="col-md-4">
+                                    {!!Form::select('material_id', 'Material', [null => 'Selecione...'] + $produtos->pluck('nome', 'id')->all())->required()!!}
+                                </div>
+
+                                <div class="col-md-2">
+                                    {!! Form::text('estoque', 'Em Estoque')->attrs(['class' => 'form-control', 'style' => 'width: 100%;'])->required()->disabled() !!}
+                                </div>
+
+                                <div class="col-md-2">
+                                    {!! Form::text('quatidade', 'Quantidade')->attrs(['class' => 'form-control', 'style' => 'width: 100%;', 'maxlength' => 4, 'oninput' => "this.value = this.value.replace(/[^0-9]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"])->required() !!}
+                                </div>
+
+                                <div class="col-md-2">
+                                    {!! Form::text('valor', 'Valor Uni.')->attrs(['class' => 'form-control', 'style' => 'width: 100%;', 'maxlength' => 4, 'step' => '0.01', ])->min(0)->type('number')->required() !!}
+                                </div>
+                                <div class="col-md-2">
+                                    {!! Form::text('total', 'Total')->attrs(['class' => 'form-control', 'style' => 'width: 100%;'])->readonly()->required() !!}
+                                </div>
+                        </div>
+                        <div class="row">
+                                <button class="btn btn-success btn-add mt-4" type="button"><i class="fas fa-plus"></i> Adicionar
+                                    Item</button>
+                        </div>
+                        {!! Form::close() !!}
+
+
+                        <div class="row">
+                            <hr class="bg-secondary w-100">
+                        </div>
+                        <div class="row">
                             <div class="table-responsive">
-                                <table id="tabela" class="table table-dynamic">
+                            <table id="tabela" class="table table-dynamic">
                                     <thead>
                                         <tr class="conteudo-th">
                                             <th class="op"></th>
                                             <th class="data">Produto/Serviço</th>
-                                            <th  class="op">Un. Medida</th>
                                             <th class="values">Qtde</th>
                                             <th class="values">Vl.Unit</th>
-                                            <th class="values">Desconto</th>
                                             <th class="values">Total do Item(R$)</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr class="dynamic-form">
-                                            <td>
-                                                <button type="button" class="btn-sm btn-danger btn-remove"><i
-                                                        class="fas fa-trash"></i></button>
-                                            </td>
-                                            <td>
-                                                <div class="form-group" style="width:250px">
-                                                    <label for="product"></label>
-                                                    <select name="product[]" class="form-control product " required>
-                                                        <option value="">Selecione</option>
-                                                            @foreach($produtos as $produto)
-                                                                <option value="{{ $produto->id }}">{{ $produto->nome }}</option>
-                                                            @endforeach
-                                                    </select>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                {!!Form::text('um[]')
-                                                ->readonly()
-                                                ->required()
-                                                !!}
-                                            </td>
-                                            <td>
-                                                {!!Form::text('quantity[]')
-                                                ->attrs(['class' => 'quantity', 'step' => '0.01' ])->min('0')->type('number')
-                                                ->required()
-                                                !!}
-                                            </td>
-                                            <td>
-                                                {!!Form::text('value_unit[]')
-                                                ->attrs(['class' => 'money value', 'step' => '0.01' ])->min('0')->type('number')
-                                                ->required()
-                                                !!}
-                                            </td>
-                                            <td>
-                                                {!!Form::text('desconto[]')
-                                                ->attrs(['class' => 'money value', 'step' => '0.01' ])->min('0')->type('number')
-                                                ->required()
-                                                !!}
-                                            </td>
-                                            <td>
-                                                {!!Form::text('total[]')
-                                                ->attrs(['class' => 'money value'])->readonly()
-                                                ->required()
-                                                !!}
-                                            </td>
-                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
-                        <div class="row increment mt-3">
-                            <div class="col-12">
-                                <button class="btn btn-success btn-add" type="button"><i class="fas fa-plus"></i>Adicionar
-                                    Item</button>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </div>
