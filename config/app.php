@@ -1,4 +1,4 @@
-<?php
+]<?php
 
 return [
 
@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost:8080'),
+    'url' => env('APP_URL', 'http://159.223.164.174:8080'),
 
     'asset_url' => env('ASSET_URL', null),
 
