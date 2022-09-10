@@ -87,11 +87,12 @@
                                 <p class="text-center mb-0"><b>Ações<b></p>
                                 <hr style="border-top: 2px solid #8c8b8b;" class="mt-2">
 
-                                 <a class="btn btn-danger btn-block btn-sm" id="btnAdd" href="">Adicionar Produtos</a>
 
+                                 <a class="btn btn-success btn-block btn-sm" id="btnAdd" href="">Adicionar Produtos</a>
 
                                  <a class="btn btn-info btn-block btn-sm" id="btnData" href="">Dados Cadastrais</a>
 
+                                 <a class="btn btn-danger btn-block btn-sm" id="btnDel" href="">Deletar Reserva</a>
 
                                  <a class="btn btn-primary btn-block btn-sm" id="btnEditar" href="">Editar</a>
 
@@ -146,10 +147,10 @@
             event.preventDefault();
             if(id === '')
             {
-                swal('Atenção', "selecione um beneficiário!",'warning');
+                swal('Atenção', "selecione uma Reserva!",'warning');
             }else
             {
-                redirectTo("/material/" + id + '/visualizar');
+                redirectTo("/reserva/" + id + '/visualizar');
             }
         });
 
@@ -157,17 +158,29 @@
             event.preventDefault();
             if(id === '')
             {
-                swal('Atenção', "selecione um beneficiário!",'warning');
+                swal('Atenção', "selecione uma Reserva!",'warning');
             }else
             {
-                redirectTo("/material/"+id);
+                redirectTo("/reserva/"+id);
             }
         });
+
         $('#btnAdd').click((event)=>{
+            event.preventDefault();
+            if(id === '')
+            {
+                swal('Atenção', "selecione uma Reserva!",'warning');
+            }else
+            {
+                redirectTo("/addProduto/"+id);
+            }
+        });
+
+        $('#btnDel').click((event)=>{
             event.preventDefault();
             if((id == '' || status != 1 ))
             {
-                swal('Atenção', "selecione um beneficiário ativo!",'warning');
+                swal('Atenção', "selecione uma Reserva ativo!",'warning');
             }else
             {
                 swal({
@@ -177,7 +190,7 @@
                         buttons: ["Cancel", "Sim!"],
                     }).then(function(value) {
                         if (value) {
-                            redirectTo("/material/" + id + '/deletar');
+                            redirectTo("/reserva/" + id + '/deletar');
                         }
                     });
                 //

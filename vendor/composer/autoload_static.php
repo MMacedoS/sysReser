@@ -37,6 +37,7 @@ class ComposerStaticInit3ba8480da7197288d82f27760233b37b
         'ed962a97bd972bc82007176b647d4e36' => __DIR__ . '/..' . '/facade/ignition/src/helpers.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
         'ec07570ca5a812141189b1fa81503674' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Assert/Functions.php',
+        'fdb3b5f01b3ed818a713c5450349237f' => __DIR__ . '/../..' . '/app/Helpers/functions.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -544,6 +545,7 @@ class ComposerStaticInit3ba8480da7197288d82f27760233b37b
     public static $classMap = array (
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
+        'App\\Http\\Controllers\\Admin\\AddMateriaisController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/AddMateriaisController.php',
         'App\\Http\\Controllers\\Admin\\ClienteController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/ClienteController.php',
         'App\\Http\\Controllers\\Admin\\MaterialController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/MaterialController.php',
         'App\\Http\\Controllers\\Admin\\ReservaController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/ReservaController.php',
@@ -571,6 +573,7 @@ class ComposerStaticInit3ba8480da7197288d82f27760233b37b
         'App\\Http\\Requests\\ProfileRequest' => __DIR__ . '/../..' . '/app/Http/Requests/ProfileRequest.php',
         'App\\Http\\Requests\\UserRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UserRequest.php',
         'App\\Models\\Cliente' => __DIR__ . '/../..' . '/app/Models/Cliente.php',
+        'App\\Models\\Estoque' => __DIR__ . '/../..' . '/app/Models/Estoque.php',
         'App\\Models\\Material' => __DIR__ . '/../..' . '/app/Models/Material.php',
         'App\\Models\\Reserva' => __DIR__ . '/../..' . '/app/Models/Reserva.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',

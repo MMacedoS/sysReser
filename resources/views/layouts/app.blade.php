@@ -102,9 +102,11 @@
         <script src="{{ asset('white') }}/js/white-dashboard.min.js?v=1.0.0"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
         <script src="{{ asset('white') }}/js/theme.js"></script>
-        <script src=" {{ asset('js/main.js') }}?version=1014"></script>
 
         <script src='https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js'></script>
+
+
+        <script src=" {{ asset('js/main.js') }}"></script>
         @stack('js')
 
         <script>
@@ -211,101 +213,6 @@
                     });
                 });
 
-
-            $('.containerGroups').each(function() {
-                var wrapper = $('.conjuntoGroups', this);
-
-                $(".addGroup", $(this)).click(function(e) {
-                    var hasEmpty = false
-                    wrapper.find("input, select").each(function() {
-                        if ($(this).val() == '' || $(this).val() == null) {
-                            hasEmpty = true
-                        }
-                    });
-
-                    if (hasEmpty) {
-                        swal("Atenção", "Preencha todos os campos antes de adicionar novos.",
-                            "warning");
-                        return;
-                    }
-
-                    var num = $(".group").last().find('select').attr('name').replace(/[^\d]/g, '');
-
-                    var newElem = $('.group:first', wrapper).clone(true);
-
-                    var newNum = new Number(num) + 1;
-
-                    newElem.find('.groupGroup').attr('name', 'qualifications[' + newNum + '][qualification_id]');
-                    newElem.find('.enabledGroup').attr('name', 'qualifications[' + newNum +
-                        '][is_enabled]');
-
-                    newElem.find('tbody').find("tr:first-child td").each(function(index) {
-                        var nameAttribute = $(this).find(':input').attr('name');
-                        if (typeof nameAttribute !== 'undefined') {
-                            nameAttribute = nameAttribute.replace(/[0-9]+/g, newNum);
-                            $(this).find(':input').attr('name', nameAttribute);
-                        }
-                    });
-
-                    newElem.find('tbody').find("tr:gt(0)").remove();
-
-                    newElem.appendTo(wrapper).find('input,select').val('');
-
-                    $('.delGroup').removeAttr('disabled');
-                });
-
-                $('.delGroup', wrapper).click(function() {
-                    if ($('.group', wrapper).length > 1) {
-                        $(this).parents('.group').remove();
-                    } else if ($('.group', wrapper).length == 1) {
-                        $(".group").find(':input').val('');
-                        $("tbody").find("tr:gt(0)").remove();
-                    }
-                });
-            });
-
-            function addGang(e) {
-                var linha = $(this).parents("tr");
-
-                var hasEmpty = false
-                linha.find("input, select").each(function() {
-                    if ($(this).val() == '' || $(this).val() == null) {
-                        hasEmpty = true
-                    }
-                });
-
-                if (hasEmpty) {
-                    swal("Atenção", "Preencha todos os campos antes de adicionar novos.", "warning");
-                    return;
-                }
-
-                clone = $(linha).clone()
-                clone.appendTo(linha.parent()).find(':input').val('');
-            }
-
-            function delGang(e) {
-                if ($(this).closest('tbody').find('tr').length == 1)
-                    $(this).closest('tbody').find(':input').val('');
-                if ($(this).closest('tbody').find('tr').length > 1)
-                    $(this).parents("tr").remove();
-            }
-
-            $('body').on('click', '.addGang', addGang);
-            $('body').on('click', '.delGang', delGang);
-
-            $('#inp-classification').on('change', function() {
-                var value = $(this).val();
-
-                $("input[required], select[required], textarea[required]")
-                    .siblings("label")
-                    .removeClass("required");
-
-                $('.conjuntoGroups').find('select, input').prop('required', value == 'G');
-
-                $("input[required], select[required], textarea[required]")
-                    .siblings("label")
-                    .addClass("required");
-            })
 
             });
         </script>

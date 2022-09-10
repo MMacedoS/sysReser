@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
+    'App\\Http\\Controllers\\Admin\\AddMateriaisController' => $baseDir . '/app/Http/Controllers/Admin/AddMateriaisController.php',
     'App\\Http\\Controllers\\Admin\\ClienteController' => $baseDir . '/app/Http/Controllers/Admin/ClienteController.php',
     'App\\Http\\Controllers\\Admin\\MaterialController' => $baseDir . '/app/Http/Controllers/Admin/MaterialController.php',
     'App\\Http\\Controllers\\Admin\\ReservaController' => $baseDir . '/app/Http/Controllers/Admin/ReservaController.php',
@@ -35,6 +36,7 @@ return array(
     'App\\Http\\Requests\\ProfileRequest' => $baseDir . '/app/Http/Requests/ProfileRequest.php',
     'App\\Http\\Requests\\UserRequest' => $baseDir . '/app/Http/Requests/UserRequest.php',
     'App\\Models\\Cliente' => $baseDir . '/app/Models/Cliente.php',
+    'App\\Models\\Estoque' => $baseDir . '/app/Models/Estoque.php',
     'App\\Models\\Material' => $baseDir . '/app/Models/Material.php',
     'App\\Models\\Reserva' => $baseDir . '/app/Models/Reserva.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',

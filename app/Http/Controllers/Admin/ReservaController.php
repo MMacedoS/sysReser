@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Cliente;
 use App\Models\Reserva;
 use App\Models\Material;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class ReservaController extends Controller
 {
@@ -23,29 +25,30 @@ class ReservaController extends Controller
     }
     public function store(Request $request)
     {
-
         $validated = $request->validate([
-            'nome' => 'required|max:255',
-            'nif' => 'required',
+            'cliente_id' => 'required',
+            'user_id' => 'required',
             'status' => 'required',
-            'endereco' => 'required',
+            'endereco' => 'nullable',
             'tipo' => 'required',
             'telefone' => 'nullable',
-            'celular' => 'required',
-            'email' => 'nullable',
-            'profissao' => 'nullable',
+            'dataRetirada' => 'required',
+            'dataRetorno' => 'required',
+            'desconto' => 'nullable',
+            'valor' => 'nullable',
+            'desconto' => 'nullable'
         ]);
 
         try {
                 DB::transaction(function () use ($validated) {
-                    Cliente::create($validated);
+                    Reserva::create($validated);
 
                 });
 
-                return redirect()->route('cliente.index')->withStatus('clientes cadastrado!');
+                return redirect()->route('reserva.index')->withStatus('reserva cadastrada!');
         //code...
         } catch (Exception $th) {
-            return redirect()->route('cliente.index')->withError('erro'. $th->getMessage());
+            return redirect()->route('reserva.index')->withError('erro'. $th->getMessage());
         }
     }
     public function show($id)
@@ -61,16 +64,19 @@ class ReservaController extends Controller
     public function update(Request $request,$id)
     {
         $validated = $request->validate([
-            'nome' => 'required|max:255',
-            'nif' => 'required',
+            'cliente_id' => 'required',
+            'user_id' => 'required',
             'status' => 'required',
-            'endereco' => 'required',
+            'endereco' => 'nullable',
             'tipo' => 'required',
             'telefone' => 'nullable',
-            'celular' => 'required',
-            'email' => 'nullable',
-            'profissao' => 'nullable',
+            'dataRetirada' => 'required',
+            'dataRetorno' => 'required',
+            'desconto' => 'nullable',
+            'valor' => 'nullable',
+            'desconto' => 'nullable'
         ]);
+
         try {
             $item = Cliente::findOrFail($id);
 

@@ -13,4 +13,10 @@ class Cliente extends Model
 
     protected $fillable = [
         'nome','nif','status','celular','endereco','tipo','telefone','email','profissao'];
+
+
+    public function reserva()
+    {
+        return $this->hasOne(Reserva::class);
+    }
 }
