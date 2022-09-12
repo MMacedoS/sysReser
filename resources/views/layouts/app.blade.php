@@ -53,6 +53,7 @@
                 </div>
             </div>
         @endauth
+        @if(@$pageSlug)
         <div class="fixed-plugin">
             <div class="dropdown show-dropdown">
                 <a href="#" data-toggle="dropdown">
@@ -80,6 +81,7 @@
                 </ul>
             </div>
         </div>
+        @endif
         <script src="{{ asset('white') }}/js/core/jquery.min.js"></script>
         <script src="{{ asset('white') }}/js/core/popper.min.js"></script>
         <script src="{{ asset('white') }}/js/core/bootstrap.min.js"></script>
@@ -100,8 +102,6 @@
 
 
         <script src=" {{ asset('js/main.js') }}"></script>
-        @stack('js')
-
         <script>
             $(document).ready(function() {
                 $().ready(function() {

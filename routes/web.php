@@ -56,6 +56,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource('reserva', 'App\Http\Controllers\Admin\ReservaController', ['except' => ['show','edit','destroy']]);
 	Route::resource('cliente', 'App\Http\Controllers\Admin\ClienteController', ['except' => ['show','edit','destroy']]);
 
-    Route::get('/addProduto/{id}', 'App\Http\Controllers\Admin\AddMateriaisController@index');
+    Route::get('/addProduto/{id}', 'App\Http\Controllers\Admin\AddMateriaisController@index')->name('addProduto');
+
 });
 
