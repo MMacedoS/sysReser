@@ -53,6 +53,7 @@
                                         <th scope="col">Dt. Retorno</th>
                                         <th scope="col">Endereço</th>
                                         <th scope="col">Valor</th>
+                                        <th>Pago</th>
                                         <th scope="col">Status</th>
                                         </tr>
                                     </thead>
@@ -69,6 +70,7 @@
                                                 <td scope="col">{{ $item->dataRetorno }}</td>
                                                 <td scope="col">{{ $item->endereco }}</td>
                                                 <td scope="col">{{ $item->valor }}</td>
+                                                <th> Sim</th>
                                                 <td scope="col">{{ $item->status ? 'Ativo': 'Inativo' }}</td>
                                             </tr>
                                         @empty
