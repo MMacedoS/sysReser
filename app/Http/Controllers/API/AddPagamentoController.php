@@ -4,18 +4,21 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Material;
-use App\Models\ItensReserva;
 use App\Models\Reserva;
+use App\Models\Pagamento;
 use Illuminate\Support\Facades\DB;
 
-class AddMateriaisController extends Controller
+class AddPagamentoController extends Controller
 {
     public function index($id)
     {
-        $data =  Material::with('estoque')->findOrFail($id);
 
-        return response($data, 200);
+        $data =  Pagamento::with('reserva.cliente')->where('reserva_id', $id)->get();
+
+        if(!empty($data))
+            return response($data, 200);
+
+        return response([],200);
     }
 
     public function store(Request $request)
@@ -23,11 +26,8 @@ class AddMateriaisController extends Controller
 
         $validated = $request->validate([
             'reserva_id' => 'required|max:255',
-            'material_id' => 'required',
-            'quantidade' => 'required',
+            'tipo' => 'required',
             'valor' => 'required',
-            'total' => 'required',
-            'entrega' => 'nullable',
         ]);
 
         try {
@@ -35,13 +35,13 @@ class AddMateriaisController extends Controller
             DB::transaction(function () use ($validated)
             {
                 $reserva = Reserva::findOrFail($validated['reserva_id']);
-                $reserva->valor += $validated['total'];
+                $reserva->saldo += $validated['valor'];
                 $reserva->save();
-                ItensReserva::create($validated);
+                Pagamento::create($validated);
 
             });
 
-            $data = ItensReserva::with('material')->where('reserva_id', $validated['reserva_id'])->get();
+            $data = Pagamento::where('reserva_id', $validated['reserva_id'])->get();
 
 
             return response($data, 200);
@@ -53,20 +53,16 @@ class AddMateriaisController extends Controller
 
     }
 
-    public function getMaterial($id)
+    public function delPagamento($id)
     {
-        return response(ItensReserva::with('material')->where('reserva_id', $id)->get());
-    }
 
-    public function delMaterial($id)
-    {
         try {
 
             DB::transaction(function () use ($id)
             {
-                $item = ItensReserva::findOrFail($id);
+                $item = Pagamento::findOrFail($id);
                 $reserva = Reserva::findOrFail($item->reserva_id);
-                $reserva->valor -= $item->total;
+                $reserva->saldo -= $item->valor;
                 $reserva->save();
                 $item->delete();
             });

@@ -90,7 +90,9 @@
                                 <hr style="border-top: 2px solid #8c8b8b;" class="mt-2">
 
 
-                                 <a class="btn btn-success btn-block btn-sm" id="btnAdd" href="">Adicionar Produtos</a>
+                                 <a class="btn btn-warning btn-block btn-sm" id="btnAdd" href="">Adicionar Produtos</a>
+
+                                 <a class="btn btn-success btn-block btn-sm" id="btnPag" href="">Adicionar Pagamento</a>
 
                                  <a class="btn btn-info btn-block btn-sm" id="btnData" href="">Dados Cadastrais</a>
 
@@ -156,6 +158,17 @@
             }
         });
 
+        $('#btnPag').click((event)=>{
+            event.preventDefault();
+            if(id === '')
+            {
+                swal('Atenção', "selecione uma Reserva!",'warning');
+            }else
+            {
+                redirectTo("/addPagamento/" + id);
+            }
+        });
+
         $('#btnEditar').click((event)=>{
             event.preventDefault();
             if(id === '')
@@ -163,7 +176,7 @@
                 swal('Atenção', "selecione uma Reserva!",'warning');
             }else
             {
-                redirectTo("/reserva/"+id);
+                redirectTo("/reserva/"+id+"/edit");
             }
         });
 

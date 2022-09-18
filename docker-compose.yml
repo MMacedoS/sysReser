@@ -24,3 +24,19 @@ services:
         environment:
             MYSQL_ROOT_PASSWORD: "secret"
             MYSQL_DATABASE: 'categ'
+            MYSQL_USER: 'echo'
+            MYSQL_PASSWORD: 'secret'
+
+    phpmyadmin:
+        container_name: "pma-reser"
+        image: phpmyadmin/phpmyadmin
+        links:
+            -  database
+        environment:
+            PMA_HOST: database
+            PMA_PORT: 3306
+            PMA_ARBITRARY: 1
+            UPLOAD_LIMIT: 30M
+        restart: always
+        ports:
+            - 8081:80

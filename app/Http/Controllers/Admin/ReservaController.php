@@ -46,20 +46,24 @@ class ReservaController extends Controller
                 });
 
                 return redirect()->route('reserva.index')->withStatus('reserva cadastrada!');
-        //code...
+
         } catch (Exception $th) {
+
             return redirect()->route('reserva.index')->withError('erro'. $th->getMessage());
+
         }
     }
     public function show($id)
     {
-        $item = Cliente::findOrFail($id);
+        $item = Reserva::findOrFail($id);
+        $clientes =  Cliente::all();
         return view('clientes.show', compact('item'));
     }
     public function edit($id)
     {
-        $item = Cliente::findOrFail($id);
-        return view('clientes.edit', compact('item'));
+        $item = Reserva::findOrFail($id);
+        $clientes =  Cliente::all();
+        return view('reservas.edit', compact('item', 'clientes'));
     }
     public function update(Request $request,$id)
     {
@@ -77,17 +81,20 @@ class ReservaController extends Controller
             'desconto' => 'nullable'
         ]);
 
+
         try {
-            $item = Cliente::findOrFail($id);
+            $item = Reserva::findOrFail($id);
 
             DB::transaction(function () use ($validated, $item) {
                 $item->update($validated);
             });
 
-            return redirect()->route('cliente.index')->withStatus('clientes Atualizado!');
-        //code...
+            return redirect()->route('reserva.index')->withStatus('reserva cadastrada!');
+
         } catch (\Throwable $th) {
-            return redirect()->route('cliente.index')->withError('erro'. $th->getMessage());
+            dd($th);
+            return redirect()->route('reserva.index')->withError('erro'. $th->getMessage());
+
         }
 
 

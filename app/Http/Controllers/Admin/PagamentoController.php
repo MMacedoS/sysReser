@@ -3,17 +3,19 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use App\Models\Reserva;
-use App\Models\Material;
+use App\Models\Pagamento;
 
-class AddMateriaisController extends Controller
+class PagamentoController extends Controller
 {
     public function index($id)
     {
         $item = Reserva::with('cliente')->findOrFail($id);
 
-        $produtos = Material::all();
+        $pagamento = Pagamento::all();
 
-        return view('reservas.add', compact('item', 'produtos'));
+        return view('pagamentos.index', compact('item', 'pagamento'));
+
     }
 }

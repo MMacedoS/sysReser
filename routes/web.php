@@ -53,10 +53,15 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/clientes/{id}/deletar','App\Http\Controllers\Admin\ClienteController@destroy');
     Route::get('/clientes/{id}/visualizar','App\Http\Controllers\Admin\ClienteController@show');
 
-	Route::resource('reserva', 'App\Http\Controllers\Admin\ReservaController', ['except' => ['show','edit','destroy']]);
+	Route::resource('reserva', 'App\Http\Controllers\Admin\ReservaController', ['except' => ['show','destroy']]);
+
 	Route::resource('cliente', 'App\Http\Controllers\Admin\ClienteController', ['except' => ['show','edit','destroy']]);
 
     Route::get('/addProduto/{id}', 'App\Http\Controllers\Admin\AddMateriaisController@index')->name('addProduto');
+
+    Route::resource('pagamentos', App\Http\Controllers\Admin\PagamentoController::class,  ['except' => ['show','index','edit','destroy']]);
+
+    Route::get('/addPagamento/{id}', 'App\Http\Controllers\Admin\PagamentoController@index');
 
 });
 

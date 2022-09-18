@@ -1,4 +1,4 @@
-@extends('layouts.app', ['page' => 'material', 'pageSlug' => 'material'])
+@extends('layouts.app', ['page' => 'reserva', 'pageSlug' => 'reserva'])
 
 @section('content')
     <div class="row">
@@ -7,11 +7,11 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-8">
-                            <h4 class="card-title">Editar Materiais</h4>
+                            <h4 class="card-title">Criar uma reserva</h4>
                         </div>
 
                             <div class="col-4 text-right">
-                                <a href="" class="btn btn-sm btn-primary">Voltar</a>
+                                <a href="{{ route('reserva.index') }}" class="btn btn-sm btn-primary">Voltar</a>
                             </div>
 
                     </div>
@@ -21,10 +21,10 @@
                     {!!Form::open()
                     ->put()
                     ->id('form-save')->fill($item)
-                    ->route('material.update', [$item->id])
+                    ->route('reserva.update', [$item->id])
                     ->multipart()!!}
                     <div class="pl-lg-4">
-                        @include('material._forms')
+                        @include('reservas._forms')
                     </div>
                     {!!Form::close()!!}
                 </div>

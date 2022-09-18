@@ -29,4 +29,10 @@ Route::group(['prefix' => 'v1'], function () {
 
     Route::get('/{id}/delete', 'App\Http\Controllers\API\AddMateriaisController@delMaterial');
 
+
+    Route::get('/getPagamento/{id}', 'App\Http\Controllers\API\AddPagamentoController@index');
+    Route::post('/addPagamento', 'App\Http\Controllers\API\AddPagamentoController@store');
+    Route::get('/addPagamento/{id}/delete', 'App\Http\Controllers\API\AddPagamentoController@delPagamento');
+
+
 });
