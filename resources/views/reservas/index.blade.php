@@ -100,6 +100,7 @@
 
                                  <a class="btn btn-primary btn-block btn-sm" id="btnEditar" href="">Editar</a>
 
+                                 <a class="btn btn-info btn-block btn-sm" id="btnComprovante" href="">Gerar Comprovante</a>
 
                             </div>
                         </div>
@@ -209,6 +210,17 @@
                         }
                     });
                 //
+            }
+        });
+
+        $('#btnComprovante').click((event)=>{
+            event.preventDefault();
+            if(id === '')
+            {
+                swal('Atenção', "selecione uma Reserva!",'warning');
+            }else
+            {
+                redirectTo("/comprovante/" + id + '/visualizar');
             }
         });
 

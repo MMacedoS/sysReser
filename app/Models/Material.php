@@ -24,4 +24,11 @@ class Material extends Model
     {
         return $this->hasOne(Estoque::class);
     }
+
+    public function itens()
+    {
+        return $this->hasMany(ItensReserva::class);
+    }
+
+
 }

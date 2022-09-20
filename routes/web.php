@@ -63,5 +63,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/addPagamento/{id}', 'App\Http\Controllers\Admin\PagamentoController@index');
 
+    Route::get('/comprovante/{id}/visualizar', 'App\Http\Controllers\Admin\ComprovanteController@index');
+
 });
 

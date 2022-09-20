@@ -34,9 +34,23 @@ class AddMateriaisController extends Controller
 
             DB::transaction(function () use ($validated)
             {
+                $material = Material::findOrFail($validated['material_id']);
+
                 $reserva = Reserva::findOrFail($validated['reserva_id']);
-                $reserva->valor += $validated['total'];
+
+                $dias = Reserva::getDays($reserva);
+
+                if($material->tipo == "Diaria")
+                    {
+                        $reserva->valor += $validated['total']*$dias;
+                    }
+                else
+                {
+                    $reserva->valor += $validated['total'];
+                }
+
                 $reserva->save();
+
                 ItensReserva::create($validated);
 
             });
@@ -65,7 +79,18 @@ class AddMateriaisController extends Controller
             DB::transaction(function () use ($id)
             {
                 $item = ItensReserva::findOrFail($id);
+
+                $material = Material::findOrFail($item->material_id);
+
                 $reserva = Reserva::findOrFail($item->reserva_id);
+
+                $dias = Reserva::getDays($reserva);
+
+                if($material->tipo == "Diaria")
+                {
+                    $item->total = $item->total * $dias;
+                }
+
                 $reserva->valor -= $item->total;
                 $reserva->save();
                 $item->delete();
