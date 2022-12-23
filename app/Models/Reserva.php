@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Reserva extends Model
 {
@@ -19,8 +20,7 @@ class Reserva extends Model
             'dataRetirada',
             'dataRetorno',
             'desconto',
-            'valor',
-            'desconto'
+            'valor'
     ];
 
     public static function getDays($reserva)
@@ -41,4 +41,26 @@ class Reserva extends Model
     {
         return $this->hasMany(ItensReserva::class);
     }
+
+    public function pagamentos()
+    {
+        return $this->hasMany(Pagamento::class);
+    }
+
+    public function atualizaValor()
+    {
+        return Reserva::with('itens.material')
+        ->where('status', 1)
+        ->where('dataRetorno', '<', \Carbon\Carbon::now())
+        ->get();
+    }
+
+    public function chartsMeses()
+    {
+        return Reserva::select(DB::raw('Month(dataRetirada) as mes, sum(valor) as valor'))
+        ->groupBy('mes')
+        ->orderBy('mes', 'asc')
+        ->get();
+    }
+
 }

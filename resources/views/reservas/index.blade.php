@@ -52,9 +52,10 @@
                                         <th scope="col">Dt. Retirada</th>
                                         <th scope="col">Dt. Retorno</th>
                                         <th scope="col">Endereço</th>
-                                        <th scope="col">Valor</th>
+                                        <th scope="col">Valor Final</th>
                                         <th>Pago</th>
                                         <th scope="col">Status</th>
+                                        <th>Qtdo itens</th>
                                         </tr>
                                     </thead>
 
@@ -65,13 +66,14 @@
                                                 <td class="text-left">
                                                    #
                                                 </td>
-                                                <td scope="col">{{ $item->nome }}</td>
-                                                <td scope="col">{{ $item->dataRetirada }}</td>
-                                                <td scope="col">{{ $item->dataRetorno }}</td>
+                                                <td scope="col">{{ $item->cliente->nome }}</td>
+                                                <td scope="col">{{ brDate($item->dataRetirada) }}</td>
+                                                <td scope="col">{{ brDate($item->dataRetorno) }}</td>
                                                 <td scope="col">{{ $item->endereco }}</td>
-                                                <td scope="col">{{ $item->valor }}</td>
-                                                <th> Sim</th>
+                                                <td scope="col">R$ {{ money($item->valor - ($item->valor * $item->desconto / 100)) }}</td>
+                                                <th>R$ {{ money($item->pagamentos->sum('valor'))}}</th>
                                                 <td scope="col">{{ $item->status ? 'Ativo': 'Inativo' }}</td>
+                                                <td>{{ $item->itens->sum('quantidade') }}</td>
                                             </tr>
                                         @empty
                                             <tr>
@@ -90,9 +92,9 @@
                                 <hr style="border-top: 2px solid #8c8b8b;" class="mt-2">
 
 
-                                 <a class="btn btn-warning btn-block btn-sm" id="btnAdd" href="">Adicionar Produtos</a>
+                                 <a class="btn btn-warning btn-block btn-sm" id="btnAdd" href="">Add|Rem Material</a>
 
-                                 <a class="btn btn-success btn-block btn-sm" id="btnPag" href="">Adicionar Pagamento</a>
+                                 <a class="btn btn-success btn-block btn-sm" id="btnPag" href="">Add|Rem Pagamento</a>
 
                                  <a class="btn btn-info btn-block btn-sm" id="btnData" href="">Dados Cadastrais</a>
 

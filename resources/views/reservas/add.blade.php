@@ -3,6 +3,9 @@
 @section('content')
 
 <div class="row mt-3">
+    <div class="col-12 text-right">
+        <a href="{{ route('reserva.index') }}" class="btn btn-sm btn-primary">Voltar</a>
+    </div>
     <div class="col-sm-12 ">
         <h4>Adição de materiais na reserva</h4>
     </div>

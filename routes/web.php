@@ -46,14 +46,14 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/material/{id}/deletar','App\Http\Controllers\Admin\MaterialController@destroy');
     Route::get('/material/{id}/visualizar','App\Http\Controllers\Admin\MaterialController@show');
 
-
-
     Route::get('/clientes/{id}','App\Http\Controllers\Admin\ClienteController@edit');
 
     Route::get('/clientes/{id}/deletar','App\Http\Controllers\Admin\ClienteController@destroy');
     Route::get('/clientes/{id}/visualizar','App\Http\Controllers\Admin\ClienteController@show');
 
 	Route::resource('reserva', 'App\Http\Controllers\Admin\ReservaController', ['except' => ['show','destroy']]);
+    Route::get('/reserva/{id}/deletar','App\Http\Controllers\Admin\ReservaController@destroy');
+    Route::get('/reserva/{id}/visualizar','App\Http\Controllers\Admin\ReservaController@show');
 
 	Route::resource('cliente', 'App\Http\Controllers\Admin\ClienteController', ['except' => ['show','edit','destroy']]);
 

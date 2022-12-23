@@ -34,5 +34,6 @@ Route::group(['prefix' => 'v1'], function () {
     Route::post('/addPagamento', 'App\Http\Controllers\API\AddPagamentoController@store');
     Route::get('/addPagamento/{id}/delete', 'App\Http\Controllers\API\AddPagamentoController@delPagamento');
 
+    Route::get('/getCharts/yearCurrent', 'App\Http\Controllers\Api\ReservaController@populaCharts');
 
 });

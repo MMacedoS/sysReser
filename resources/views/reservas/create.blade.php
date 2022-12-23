@@ -10,10 +10,9 @@
                             <h4 class="card-title">Criar uma reserva</h4>
                         </div>
 
-                            <div class="col-4 text-right">
-                                <a href="{{ route('reserva.index') }}" class="btn btn-sm btn-primary">Voltar</a>
-                            </div>
-
+                        <div class="col-4 text-right">
+                            <a href="{{ route('reserva.index') }}" class="btn btn-sm btn-primary">Voltar</a>
+                        </div>
                     </div>
                 </div>
                 <div class="card-body">

@@ -10,6 +10,14 @@ function ukDate($datetime = null, $timestamp = false)
     return Carbon::createFromFormat($format, $datetime)->format($timestamp);
 }
 
+function getDays($data)
+    {
+        $data =  \Carbon\Carbon::parse($data);
+
+        $dataHoje =  \Carbon\Carbon::now();
+
+        return $dias = $data->diffInDays($dataHoje);
+    }
 
 function brDate($datetime = null, $timestamp = false)
 {
@@ -17,6 +25,31 @@ function brDate($datetime = null, $timestamp = false)
     $timestamp = $timestamp ? 'd/m/Y H:i' : 'd/m/Y';
     return Carbon::parse($datetime)->format($timestamp);
 }
+
+function TransformMeses($dados)
+{
+    $transformados = [];
+    $meses = [
+        1 => 'Janeiro',
+        2 => 'Fevereiro',
+        3 => 'Março',
+        4 => 'Abril',
+        5 => 'Maio',
+        6 => 'Junho',
+        7 => 'Julho',
+        8 => 'Agosto',
+        9 => 'Setembro',
+        10 => 'Outubro',
+        11 => 'Novembro',
+        12 => 'Dezembro'
+    ];
+
+    $transformados = $dados->mapWithKeys(function($mes) use ($meses) {
+        return [$meses[$mes->mes] => $mes->valor];
+    });
+    return $transformados;
+}
+
 
 function moeda($get_valor)
 {

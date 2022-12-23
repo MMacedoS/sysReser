@@ -74,7 +74,8 @@ class AddMateriaisController extends Controller
 
     public function delMaterial($id)
     {
-        try {
+        try
+        {
 
             DB::transaction(function () use ($id)
             {
@@ -98,8 +99,10 @@ class AddMateriaisController extends Controller
 
             return redirect()->back();
 
-        } catch (\Throwable $th) {
-            return response('erro ao adicionar' . $th, 500);
         }
+            catch (\Throwable $th)
+            {
+                return response('erro ao adicionar' . $th, 500);
+            }
     }
 }
