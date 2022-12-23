@@ -158,6 +158,26 @@
 
                         </table>
                     </div>
+                    <div class="container">
+                        <h4>Pagamentos lançados</h4>
+
+                        <table class="table tablesorter table-hover">
+                            <thead>
+                                <th>Tipo pagamento</th>
+                                <th>Valor pagamento</th>
+                                <th>Data pagamento</th>
+                            </thead>
+                            <tbody>
+                                @foreach ($item->pagamentos as $pagamento)
+                                    <tr>
+                                        <td>{{$pagamento->tipo}}</td>
+                                        <td>R$ {{money($pagamento->valor)}}</td>
+                                        <td>{{brDate($pagamento->created_at)}}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

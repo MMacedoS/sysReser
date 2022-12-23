@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Reserva;
+
 class HomeController extends Controller
 {
     /**
@@ -21,6 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('dashboard');
+        $reserva = Reserva::with('cliente')->where('dataRetorno', '<=', \Carbon\carbon::now())->simplePaginate(2);
+        return view('dashboard', compact('reserva'));
     }
 }

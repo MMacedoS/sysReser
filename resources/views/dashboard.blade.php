@@ -61,120 +61,35 @@
                             <thead class=" text-primary">
                                 <tr>
                                     <th>
-                                        Name
+                                        Cliente
                                     </th>
                                     <th>
-                                        Country
+                                        Telefone
                                     </th>
                                     <th>
-                                        City
+                                        Valor
                                     </th>
-                                    <th class="text-center">
-                                        Salary
+                                    <th>
+                                        Data de retorno
                                     </th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach ($reserva as $item)
+
                                 <tr>
-                                    <td>
-                                      Dakota Rice
-                                    </td>
-                                    <td>
-                                      Niger
-                                    </td>
-                                    <td>
-                                      Oud-Turnhout
-                                    </td>
-                                    <td class="text-center">
-                                      $36,738
-                                    </td>
+                                    <td>{{$item->cliente->nome}}</td>
+                                    <td>{{$item->cliente->telefone}}</td>
+                                    <td>R$ {{money($item->valor)}}</td>
+                                    <td>{{brDate($item->dataRetorno)}}</td>
                                 </tr>
-                                <tr>
-                                    <td>
-                                        Minerva Hooper
-                                    </td>
-                                    <td>
-                                        Curaçao
-                                    </td>
-                                    <td>
-                                        Sinaai-Waas
-                                    </td>
-                                    <td class="text-center">
-                                        $23,789
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Sage Rodriguez
-                                    </td>
-                                    <td>
-                                        Netherlands
-                                    </td>
-                                    <td>
-                                        Baileux
-                                    </td>
-                                    <td class="text-center">
-                                        $56,142
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Philip Chaney
-                                    </td>
-                                    <td>
-                                        Korea, South
-                                    </td>
-                                    <td>
-                                        Overland Park
-                                    </td>
-                                    <td class="text-center">
-                                        $38,735
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Doris Greene
-                                    </td>
-                                    <td>
-                                        Malawi
-                                    </td>
-                                    <td>
-                                        Feldkirchen in Kärnten
-                                    </td>
-                                    <td class="text-center">
-                                        $63,542
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Mason Porter
-                                    </td>
-                                    <td>
-                                        Chile
-                                    </td>
-                                    <td>
-                                        Gloucester
-                                    </td>
-                                    <td class="text-center">
-                                        $78,615
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Jon Porter
-                                    </td>
-                                    <td>
-                                        Portugal
-                                    </td>
-                                    <td>
-                                        Gloucester
-                                    </td>
-                                    <td class="text-center">
-                                        $98,615
-                                    </td>
-                                </tr>
+
+                                @endforeach
                             </tbody>
                         </table>
+                    </div>
+                    <div>
+                        {!! $reserva->links() !!}
                     </div>
                 </div>
             </div>
